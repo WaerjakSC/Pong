@@ -7,21 +7,9 @@
 ABoundary::ABoundary()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
+
+	Bounds = CreateDefaultSubobject<UBoxComponent>(TEXT("Bounds"));
+	RootComponent = Bounds;
 
 }
-
-// Called when the game starts or when spawned
-void ABoundary::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-// Called every frame
-void ABoundary::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-

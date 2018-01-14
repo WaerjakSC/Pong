@@ -14,7 +14,11 @@ class PONG_API UGameHUD : public UUserWidget
 {
 	GENERATED_BODY()
 	
-	
-	
-	
+public: 
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Score")
+		void UpdateAIScore(int Score);
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Score")
+		void UpdatePlayerScore(int Score);
+
+
 };

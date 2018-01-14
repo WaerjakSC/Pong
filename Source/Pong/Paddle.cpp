@@ -9,6 +9,12 @@ APaddle::APaddle()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	Collider = CreateDefaultSubobject<UBoxComponent>(TEXT("Collision"));
+	RootComponent = Collider;
+
+	PaddleSprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("Sprite"));
+	PaddleSprite->SetupAttachment(RootComponent);
+
 }
 
 // Called when the game starts or when spawned
@@ -24,11 +30,3 @@ void APaddle::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
-
-// Called to bind functionality to input
-void APaddle::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-}
-

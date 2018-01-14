@@ -4,7 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "PaperSpriteComponent.h"
+#include "Components/BoxComponent.h"
 #include "Paddle.generated.h"
+
+class ABall;
 
 UCLASS()
 class PONG_API APaddle : public APawn
@@ -15,17 +19,24 @@ public:
 	// Sets default values for this pawn's properties
 	APaddle();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Collision", meta = (AllowPrivateAccess))
+	UBoxComponent* Collider;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Sprite")
+	UPaperSpriteComponent* PaddleSprite;
 
+
+
+protected:
+
+	virtual void BeginPlay() override;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Float", meta = (BlueprintProtected))
+	float MoveSpeed = 10.0f;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Setup", meta = (BlueprintProtected))
+	ABall* BallRef;
+
 	
 };
